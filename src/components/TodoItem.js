@@ -1,13 +1,45 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class TodoItem extends Component {
+
+    getStyle = () => {
+        // if(this.props.todo.isCompleted) {
+        //     return { textDecoration: 'line-through' }
+        // } else { return {  textDecoration: 'none'}
+        // }
+
+        return {
+            background: '#f4f4f4',
+            padding: '10px',
+            borderBottom: '1px #ccc dotted',
+            textDecoration: this.props.todo.isCompleted ? 'line-through' : 'none'
+        }
+    }
+
+    markComplete = (e) => {
+        console.log(this.props)
+    }
+
     render() {
         return (
-            <div>
-                <h3>Hello</h3>
+            <div style={ this.getStyle() }>
+                <p>
+                    <input type="checkbox" onChange={this.markComplete} /> {' '}
+                    { this.props.todo.title }
+                </p>
             </div>
         );
     }
 }
+
+//PropTypes
+TodoItem.propTypes = {
+    todo: PropTypes.object.isRequired
+}
+
+// const itemStyle = {
+//     backgroundColor: '#f4f4f4'
+// }
 
 export default TodoItem;

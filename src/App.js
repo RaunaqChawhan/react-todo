@@ -9,7 +9,7 @@ class App extends Component {
       {
         id: 1,
         title: "This is example",
-        isCompleted: false
+        isCompleted: true
       },
       {
         id: 2,
