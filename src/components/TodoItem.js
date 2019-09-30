@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class TodoItem extends Component {
 
     getStyle = () => {
-        // if(this.props.todo.isCompleted) {
+        // if(this.props.todo.completed) {
         //     return { textDecoration: 'line-through' }
         // } else { return {  textDecoration: 'none'}
         // }
@@ -13,20 +13,18 @@ class TodoItem extends Component {
             background: '#f4f4f4',
             padding: '10px',
             borderBottom: '1px #ccc dotted',
-            textDecoration: this.props.todo.isCompleted ? 'line-through' : 'none'
+            textDecoration: this.props.todo.completed ? 'line-through' : 'none'
         }
     }
 
-    markComplete = (e) => {
-        console.log(this.props)
-    }
 
     render() {
+        const { id, title } = this.props.todo;  //destructuring
         return (
             <div style={ this.getStyle() }>
                 <p>
-                    <input type="checkbox" onChange={this.markComplete} /> {' '}
-                    { this.props.todo.title }
+                    <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} /> {' '}
+                    { title }
                 </p>
             </div>
         );

@@ -9,25 +9,37 @@ class App extends Component {
       {
         id: 1,
         title: "This is example",
-        isCompleted: true
+        completed: true
       },
       {
         id: 2,
         title: "This is example 2",
-        isCompleted: false
+        completed: false
       },
       {
         id: 3,
         title: "This is example 3",
-        isCompleted: false
+        completed: false
       }
     ]
   }
+
+  //Toggle Complete
+  markComplete = (id) => {
+    //console.log(id);
+    this.setState({ todos: this.state.todos.map(todo => {
+      if(todo.id === id) {
+        todo.completed = !todo.completed
+      }
+      return todo;
+    }) });
+  }
+
   render() {
     //console.log(this.state.todos)
     return (
       <div className="App">
-        <Todos todos= { this.state.todos }/>
+        <Todos todos= { this.state.todos } markComplete={this.markComplete}/>
       </div>
     );
   }
